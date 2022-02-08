@@ -37,3 +37,16 @@ STYLE = '''
             }}
         </style>
 '''
+
+FOOTER ='''
+<div class="pt-6">
+      <footer id="footer" class="relative z-50 dark:bg-gray-600">
+        <div class="flex flex-col items-center justify-center mb-2">
+          <p tabindex="0" class="mt-6 text-xs leading-none text-center text-gray-900 focus:outline-none lg:text-sm dark:text-gray-50">
+            Made with ❤️ by
+              <a href="https://github.com/Baelfire18">José Antonio Castro</a>
+          </p>
+          <br/>
+        </div>
+      </footer>
+    </div>'''

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from functions import read_data, get_table_headers, get_table_body, get_resume_table_headers, get_resume_table_body
-from params import STYLE
+from params import STYLE, FOOTER
 
 app = FastAPI()
 
@@ -33,7 +33,7 @@ async def root():
             {STYLE}
         </head>
         <body>
-            <div class="min-h-screen py-5 bg-white-800">
+            <div class="min-h-screen py-5 bg-gray-400">
                 <h1 class="mt-0 mb-2 text-6xl leading-normal text-center font-sanserif text-gray-50">
                     Company
                 </h1>
@@ -67,6 +67,7 @@ async def root():
                     </div>
                 </div>
             </div>
+            {FOOTER}
         </body>
     </html>
     '''
