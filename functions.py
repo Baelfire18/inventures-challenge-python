@@ -6,9 +6,9 @@ def read_data():
         lines = [ i.strip().split(',') for i in file.readlines() ]
     table_headers = lines.pop(0)
 
-    lines.sort(key=lambda x: x[4])
-    # lines.sort(key=lambda x: int( x[6].split('/')[0] ) )
-    lines.sort(key=lambda x: int( x[6].split('/')[1] ) )
+    lines.sort(key=lambda x: x[4]) # SORT ALPHANUMERIC BY ROL
+    # lines.sort(key=lambda x: int( x[6].split('/')[0] ) ) # SORT BY DAY
+    lines.sort(key=lambda x: int( x[6].split('/')[1] ) ) # SORT BY MONTH
 
     return table_headers, lines
 
@@ -66,32 +66,30 @@ def get_color_to_rol(aux):
 def get_roles(data):
     roles = list(set([ i[4] for i in data ]))
     roles.sort()
-    roles.insert(0, 'Mes')
     return roles
 
-def get_resume_table_headers(data):
-    headers = get_roles(data)
-    print(headers)
-    table_headers_info = ''
-    for table_header in headers:
-        table_headers_info += f'<th class="px-3 py-4 text-sm font-semibold uppercase"> {table_header} </th>'
+def get_resume_table_headers():
+    table_headers_info = '<th class="px-3 py-4 text-sm font-semibold uppercase"> Rol </th>'
+    for month in range(1, 13):
+        table_headers_info += f'''<th class="px-3 py-4 text-sm font-semibold uppercase">
+                                      {datetime.strptime(str(month), '%m').strftime('%b')} 
+                                  </th>'''
     return table_headers_info
 
 def get_resume_table_body(data, dicc):
-    headers = get_roles(data)
-    headers.pop(0)
+    roles = get_roles(data)
     table_body = ''
-    for month in range(1, 13):
-        month_data = dicc[month]
+    for rol in roles:
         table_row = f'''<tr class="flex-col table-row mb-2 flex-no wrap text-white hover:bg-gray-600">
                             <th class="p-3 py-4 text-center border border-grey-light">
-                                {datetime.strptime(str(month), '%m').strftime('%b')}
+                                {get_color_to_rol(rol)}
                             </th>'''
-        for rol in headers:
-            if rol not in month_data:
+        for i in range(1, 13):
+            print(i, rol)
+            if rol not in dicc[i]:
                 count = 0
             else:
-                count = month_data[rol]
+                count = dicc[i][rol]
             table_row += f'''
                     <td class="p-3 py-4 text-center border border-grey-light">
                         {count}
@@ -100,3 +98,14 @@ def get_resume_table_body(data, dicc):
         table_row += '</tr>'
         table_body += table_row
     return table_body
+
+def get_resume_dict(data):
+    dicc = {}
+    for i in range(1, 13):
+        dicc[i] = {} 
+    for linea in data:
+        if linea[4] in dicc[int(linea[6].split('/')[1])]:
+            dicc[int(linea[6].split('/')[1])][linea[4]] += 1
+        else:
+            dicc[int(linea[6].split('/')[1])][linea[4]] = 1
+    return dicc

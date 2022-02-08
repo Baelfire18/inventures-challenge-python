@@ -39,7 +39,7 @@ STYLE = '''
 '''
 
 FOOTER ='''
-<div class="pt-6">
+    <div class="pt-6">
       <footer id="footer" class="relative z-50 dark:bg-gray-600">
         <div class="flex flex-col items-center justify-center mb-2">
           <p tabindex="0" class="mt-6 text-xs leading-none text-center text-gray-900 focus:outline-none lg:text-sm dark:text-gray-50">

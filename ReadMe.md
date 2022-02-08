@@ -4,6 +4,7 @@ You can see the app in production from here:
 <https://inventures-challenge-python.herokuapp.com/>
 
 For running this app you need to create and open the enviroment:
+
 ```bash
 python3 -m venv env
 ```
