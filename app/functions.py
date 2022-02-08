@@ -1,13 +1,13 @@
 from datetime import datetime
-from params import ROLES
+from app.params import ROLES
 
 def read_data():
-    with open('db/datos.csv', 'r', encoding='UTF-8') as file:
+    with open('app/db/datos.csv', 'r', encoding='UTF-8') as file:
         lines = [ i.strip().split(',') for i in file.readlines() ]
     table_headers = lines.pop(0)
 
     lines.sort(key=lambda x: x[4]) # SORT ALPHANUMERIC BY ROL
-    # lines.sort(key=lambda x: int( x[6].split('/')[0] ) ) # SORT BY DAY
+    lines.sort(key=lambda x: int( x[6].split('/')[0] ) ) # SORT BY DAY
     lines.sort(key=lambda x: int( x[6].split('/')[1] ) ) # SORT BY MONTH
 
     return table_headers, lines
@@ -85,7 +85,6 @@ def get_resume_table_body(data, dicc):
                                 {get_color_to_rol(rol)}
                             </th>'''
         for i in range(1, 13):
-            print(i, rol)
             if rol not in dicc[i]:
                 count = 0
             else:
