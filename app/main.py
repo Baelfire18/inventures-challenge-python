@@ -19,7 +19,7 @@ async def root():
     return f'''
     <html>
         <head>
-            <title>Company</title>
+            <title>Inventures</title>
             <link rel="shortcut icon" href="https://inventures.cl/favicon-32x32.png?v=57fbe07a287dc2f549231ebe0bdda9a7"/>
             <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
             {STYLE}
@@ -27,7 +27,7 @@ async def root():
         <body>
             <div class="min-h-screen py-5 bg-gray-400">
                 <h1 class="mt-0 mb-2 text-6xl leading-normal text-center font-sanserif text-gray-50">
-                    Company
+                    Inventures Challenge
                 </h1>
                 <div class="flex items-center justify-center">
                     <div class="container">
